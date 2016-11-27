@@ -1,10 +1,11 @@
-%h2 Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    %br/
-    = f.email_field :email, autofocus: true
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+.devise-container
+  .devise-form
+    %h1 TaskManager
+    %h3 Forgot your password?
+    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :email, required: true, autofocus: true
+      .form-actions
+        = f.button :submit, "SUBMIT", class: "btn-primary btn-lg devise-button"
+    = render "devise/shared/links"
