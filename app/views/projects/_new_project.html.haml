@@ -1,0 +1,12 @@
+.modal-dialog
+  .modal-content
+    = simple_form_for @project do |f|
+      .modal-header
+        %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} x
+        %h3#myModalLabel New project
+      .modal-body
+        = f.input :name
+      .modal-footer
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+        = f.button :submit
+      

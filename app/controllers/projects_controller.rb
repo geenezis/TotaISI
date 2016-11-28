@@ -7,4 +7,25 @@ class ProjectsController < ApplicationController
   def show
   	@project = Project.find(params[:id])
   end
+
+  def new
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    @project = Project.new
+  end
+
+  def create
+    #@project = Project.new(project_params)
+    p = Project.create(project_params)
+    ProjectAssociation.create(user: current_user, project: p, association_type_vo: 'manager')
+
+    redirect_to :back
+  end
+
+  private
+    def project_params
+      params.require(:project).permit(:name)
+    end
 end

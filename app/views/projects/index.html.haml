@@ -21,9 +21,12 @@
         %p.text-center You are not contributing to any projects.
       - else 
         - @contributions.each do |p|
-          %li.list-group-item
+          %li.list-group-item.row
             %h4= link_to p.name, project_path(p)
   .round-button
     .round-button-circle
-      %a.round-button{:href => "#"}
-        %span.glyphicon.glyphicon-plus
+      = link_to new_project_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} do
+        .round-button
+          %span.glyphicon.glyphicon-plus
+#modal-window.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog"}
+          
