@@ -12,8 +12,9 @@
             .col-md-2.mt-10.text-right
               %a{:href => "#"}
                 %span.glyphicon.glyphicon-cog.mr-15
-              %a{:href => "#"}
-                %span.glyphicon.glyphicon-remove
+
+              = link_to project_path(p), method: :delete, data: { confirm: 'Are you sure?' } do
+                %i.glyphicon.glyphicon-remove.mr-15
 
     %h2.text-center.mt-80 PROJECTS YOU CONTRIBUTE TO
     %ul.list-group.mt-50
@@ -25,8 +26,7 @@
             %h4= link_to p.name, project_path(p)
   .round-button
     .round-button-circle
-      = link_to new_project_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window'} do
+      = link_to new_project_path do
         .round-button
           %span.glyphicon.glyphicon-plus
-#modal-window.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog"}
           

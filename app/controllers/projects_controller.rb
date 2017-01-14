@@ -9,18 +9,25 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    respond_to do |format|
-      format.html
-      format.js
-    end
     @project = Project.new
   end
 
   def create
-    #@project = Project.new(project_params)
-    p = Project.create(project_params)
-    ProjectAssociation.create(user: current_user, project: p, association_type_vo: 'manager')
+    @project = Project.new(project_params)
+ 
+    if @project.save
+      ProjectAssociation.create(user: current_user, project: Project.find(@project.id), association_type_vo: 'manager')
+      redirect_to @project
+    else
+      render 'new'
+    end
+  end
 
+  def destroy
+    @project = Project.find(params[:id])
+    @project_associations = ProjectAssociation.where(project: @project)
+    @project_associations.each { |p| p.destroy}
+    @project.destroy
     redirect_to :back
   end
 

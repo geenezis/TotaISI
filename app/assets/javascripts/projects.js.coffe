@@ -1,0 +1,6 @@
+$ ()->
+  console.log "lalalalal"
+  $("new_project").on "ajax:success", (event, data, status, xhr) ->
+    console.log "lalalalal"
+    $('#modal-window').modal('hide')
+    $('table tbody').append('<tr><td>' + data.title + '</td><td>' + data.content + '</td></tr>')

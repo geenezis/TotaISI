@@ -1,0 +1,9 @@
+.container-fluid.content-container.bg-grey
+  .form-container
+    .form-title
+      %h1 New Project
+    = simple_form_for @project do |f|
+      .form-inputs
+        = f.input :name, required: true, autofocus: true
+      .form-actions
+        = f.button :submit, "Create project", class: "btn-primary btn-lg btn-form"
