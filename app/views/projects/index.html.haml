@@ -10,12 +10,10 @@
             .col-md-10
               %h4= link_to p.name, project_path(p)
             .col-md-2.mt-10.text-right
-              %a{:href => "#"}
-                %span.glyphicon.glyphicon-cog.mr-15
-
+              = link_to edit_project_path(p) do
+                %i.glyphicon.glyphicon-cog.mr-15
               = link_to project_path(p), method: :delete, data: { confirm: 'Are you sure?' } do
                 %i.glyphicon.glyphicon-remove.mr-15
-
     %h2.text-center.mt-80 PROJECTS YOU CONTRIBUTE TO
     %ul.list-group.mt-50
       - if @contributions.empty?

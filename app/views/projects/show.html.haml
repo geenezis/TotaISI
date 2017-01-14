@@ -1,1 +1,26 @@
-%h1= @project.name
+.container-fluid.content-container.bg-grey
+  .project-title.text-center
+    %h1= @project.name
+  .project-content
+    .row
+      .col-md-4
+        .panel.panel-default.text-center
+          .panel-heading
+            %h3 To do
+          .panel-body.task-list
+          .panel-footer
+            %p
+      .col-md-4
+        .panel.panel-default.text-center
+          .panel-heading
+            %h3 In progress
+          .panel-body.task-list
+          .panel-footer
+            %p
+      .col-md-4
+        .panel.panel-default.text-center
+          .panel-heading
+            %h3 Done
+          .panel-body.task-list
+          .panel-footer
+            = link_to "Add task", projects_path 
