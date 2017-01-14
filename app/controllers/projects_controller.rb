@@ -6,6 +6,9 @@ class ProjectsController < ApplicationController
 
   def show
   	@project = Project.find(params[:id])
+    @to_do = @project.tasks.where(status: "To Do")
+    @in_progress = @project.tasks.where(status: "In Progress")
+    @done = @project.tasks.where(status: "Done")
   end
 
   def new

@@ -1,0 +1,20 @@
+.container-fluid.content-container.bg-grey
+  .form-container
+    .form-title
+      %h1 New Task
+    = simple_form_for [@project, @task] do |f|
+      .form-inputs
+        = f.input :title, required: true, autofocus: true
+        = f.input :description, as: :text, required: true
+        .row
+          .col-md-4
+            = f.input :priority, collection: ['High', 'Medium', 'Low'], required: true
+          .col-md-4
+            = f.input :status, collection: ['To Do', 'In Progress', 'Done'], required: true
+          .col-md-4
+            = f.input :estimation, collection: [1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]
+      .form-actions
+        = f.button :submit, "Create task", class: "btn-primary btn-lg btn-form"
+
+        
+

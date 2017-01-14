@@ -8,19 +8,25 @@
           .panel-heading
             %h3 To do
           .panel-body.task-list
+            %ul.list-group
+              = render :partial => "tasks/task", :collection => @to_do, :as => :t
           .panel-footer
-            %p
+            = link_to "Add task", new_project_task_path(@project)
       .col-md-4
         .panel.panel-default.text-center
           .panel-heading
             %h3 In progress
           .panel-body.task-list
+            %ul.list-group
+              = render :partial => "tasks/task", :collection => @in_progress, :as => :t
           .panel-footer
-            %p
+            = link_to "Add task", new_project_task_path(@project)
       .col-md-4
         .panel.panel-default.text-center
           .panel-heading
             %h3 Done
           .panel-body.task-list
+            %ul.list-group
+              = render :partial => "tasks/task", :collection => @done, :as => :t
           .panel-footer
-            = link_to "Add task", projects_path 
+            = link_to "Add task", new_project_task_path(@project)

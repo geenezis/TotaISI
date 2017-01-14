@@ -1,0 +1,22 @@
+%li.list-group-item.task.text-left
+  .row
+    .col-md-1
+      - if t.priority == "High"
+        .priority-red
+      - elsif t.priority == "Medium"
+        .priority-yellow
+      - elsif t.priority == "Low"
+        .priority-green
+    .col-md-8
+      = t.title
+    .col-md-1
+      - if t.estimation.nil?
+        %span.badge.task-estimation 0
+      - else
+        %span.badge.task-estimation= t.estimation
+    .col-md-1
+      = link_to "#" do
+        %i.glyphicon.glyphicon-cog.mr-15
+    .col-md-1
+      = link_to "#", method: :delete, data: { confirm: 'Are you sure?' } do
+        %i.glyphicon.glyphicon-remove.mr-15
