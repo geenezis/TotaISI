@@ -18,5 +18,5 @@
       = link_to "#" do
         %i.glyphicon.glyphicon-cog.mr-15
     .col-md-1
-      = link_to "#", method: :delete, data: { confirm: 'Are you sure?' } do
+      = link_to project_task_path(t.project, t), method: :delete, data: { confirm: 'Are you sure?' }do
         %i.glyphicon.glyphicon-remove.mr-15
