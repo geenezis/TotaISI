@@ -1,2 +1,45 @@
-%h1 Tasks#show
-%p Find me in app/views/tasks/show.html.haml
+.container-fluid.content-container.bg-grey
+  .task-container
+    .row
+      .col-md-9
+        .well.well-sm.well-white
+          %h4.ml-10= @task.title
+      .col-md-3.text-right
+        .btn-group.btn-group-lg{"aria-label" => "...", :role => "group"}
+          = link_to "Edit", edit_project_task_path(@task.project, @task), class: 'btn btn-default btn-task'
+          = link_to "Delete", project_task_path(@task.project, @task), method: :delete, data: { confirm: 'Are you sure you want to delete task?' }, class: 'btn btn-danger btn-task'
+    .row
+      .col-md-12
+        .well.well-white.task-description
+          %p= @task.description
+    .row
+      .col-md-7.text-right.mt-10
+        %b Status:
+      .col-md-5
+        .well.well-sm.well-white
+          = @task.status
+    .row
+      .col-md-7.text-right.mt-10
+        %b Priority:
+      .col-md-5
+        .well.well-sm.well-white
+          = @task.priority
+    .row
+      .col-md-7.text-right.mt-10
+        %b Estimation:
+      .col-md-5
+        .well.well-sm.well-white
+          - if @task.estimation.nil?
+            = "0"
+          - else
+            = @task.estimation
+    .row
+      .col-md-7.text-right.mt-10
+        %b User:
+      .col-md-5
+        .well.well-sm.well-white
+          - if @task.user.nil?
+            = "Not assigned"
+          - else
+            = @task.user.email
+
