@@ -1,0 +1,20 @@
+.container-fluid.content-container.bg-grey
+  .contributors.form-container
+    .form-title
+      %h1 Contributors
+    %ul.list-group.mt-50
+      %li.list-group-item.row
+        .col-md-12
+          %h4= "#{@manager.email} - MANAGER"
+      - unless @contributors.empty?
+        - @contributors.each do |c|
+          %li.list-group-item.row
+            .col-md-10
+              %h4= c.email
+            - if current_user.id == @manager.id
+              .col-md-2.mt-10.text-right
+                = link_to remove_contributor_project_path(@project, c.id), method: :delete, data: { confirm: 'Are you sure you want to remove user from project?' } do
+                  %i.glyphicon.glyphicon-remove.mr-15
+  - if current_user.id == @manager.id
+    .add-contributor.text-center
+      = link_to "Add contributor", new_project_invitation_path(@project), class: 'btn btn-primary btn-lg'

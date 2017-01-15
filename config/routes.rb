@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :projects do
     member do
       delete :leave
+      delete 'remove/:user_id', :action => 'remove_contributor', :as => 'remove_contributor'
+      get :contributors
     end
     resources :tasks
     resources :invitations, only: [:new, :create]

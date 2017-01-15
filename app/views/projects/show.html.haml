@@ -8,8 +8,8 @@
         .project-actions
           .btn-group.btn-group-lg{"aria-label" => "...", :role => "group"}
             = link_to "Add task", new_project_task_path(@project), class: 'btn btn-default'
+            = link_to "Contributors", contributors_project_path(@project), class: 'btn btn-default'
             - if @relation.association_type_vo == "manager"
-              = link_to "Add contributor", new_project_invitation_path(@project), class: 'btn btn-default'
               = link_to "Edit", edit_project_path(@project), class: 'btn btn-default' 
               = link_to "Delete", project_path(@project), method: :delete, data: { confirm: 'Are you sure you want to delete project?' }, class: 'btn btn-danger'
             - else

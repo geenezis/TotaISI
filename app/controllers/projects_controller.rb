@@ -56,6 +56,18 @@ class ProjectsController < ApplicationController
     redirect_to projects_url
   end
 
+  def contributors
+    @project = Project.find(params[:id])
+    @manager = @project.users.where(:project_associations => {:association_type_vo => "manager"}).first
+    @contributors = @project.users.where(:project_associations => {:association_type_vo => "contributor"})
+  end
+
+  def remove_contributor
+    pa = ProjectAssociation.where(user: params[:user_id], project: params[:id]).first
+    pa.destroy
+    redirect_to :back
+  end
+
   private
     def project_params
       params.require(:project).permit(:name)
