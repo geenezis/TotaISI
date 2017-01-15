@@ -43,6 +43,9 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
+    @project = @task.project.id
+    @comment = Comment.new
+    @comments = @task.comments
   end
 
   private

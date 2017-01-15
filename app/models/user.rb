@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :project_associations
   has_many :invitations, dependent: :destroy
   has_many :tasks
+  has_many :comments, dependent: :destroy
 
   def to_s
     email

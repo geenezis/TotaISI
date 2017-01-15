@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :invitations, only: [:new, :create]
   end
 
+  resources :comments, only: [:create, :destroy]
+
   resources :invitations, only: [:index, :destroy] 
 
 

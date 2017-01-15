@@ -42,4 +42,22 @@
             = "Not assigned"
           - else
             = @task.user.email
+  .comments-container
+    %h2.text-center.mb-50 COMMENTS
+    = simple_form_for @comment, :url => comments_path, :method => 'post' do |f|
+      .form-inputs
+        = f.input :content, required: true, autofocus: true
+        = f.hidden_field :task_id, value: @task.id
+        = f.hidden_field :user_id, value: current_user.id
+      .form-actions
+        = f.button :submit, "Add comment", class: "btn-primary btn-lg btn-form"
+    .mt-50
+      - @comments.each do |c|
+        .row
+          .well.well-white
+            %b= "#{c.user}"
+            = " commented on "
+            = "#{c.created_at.strftime('%m-%e-%y %H:%M')}:"
+            %br
+            .mt-10= c.content
 
