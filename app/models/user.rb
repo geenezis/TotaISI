@@ -6,4 +6,9 @@ class User < ApplicationRecord
   has_many :projects, through: :project_associations
   has_many :project_associations
   has_many :invitations, dependent: :destroy
+  has_many :tasks
+
+  def to_s
+    email
+  end
 end
