@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   resources :projects do
+    member do
+      delete :leave
+    end
     resources :tasks
     resources :invitations, only: [:new, :create]
   end

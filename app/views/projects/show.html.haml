@@ -7,11 +7,13 @@
       .col-md-6.text-right
         .project-actions
           .btn-group.btn-group-lg{"aria-label" => "...", :role => "group"}
-            %a.btn.btn-default{:href => new_project_task_path(@project)} Add task
+            = link_to "Add task", new_project_task_path(@project), class: 'btn btn-default'
             - if @relation.association_type_vo == "manager"
-              %a.btn.btn-default{:href => new_project_invitation_path(@project)} Add contributor
-              %a.btn.btn-default{:href => edit_project_path(@project)} Edit
-              %a.btn.btn-danger{:href => project_path(@project), method: :delete, data: { confirm: 'Are you sure you want to delete project?' }} Delete
+              = link_to "Add contributor", new_project_invitation_path(@project), class: 'btn btn-default'
+              = link_to "Edit", edit_project_path(@project), class: 'btn btn-default' 
+              = link_to "Delete", project_path(@project), method: :delete, data: { confirm: 'Are you sure you want to delete project?' }, class: 'btn btn-danger'
+            - else
+              = link_to "Leave", leave_project_path(@project), method: :delete, data: { confirm: 'Are you sure you want to delete project?' }, class: 'btn btn-danger'
   .project-content
     .row
       .col-md-4

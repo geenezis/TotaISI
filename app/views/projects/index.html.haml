@@ -21,7 +21,11 @@
       - else 
         - @contributions.each do |p|
           %li.list-group-item.row
-            %h4= link_to p.name, project_path(p)
+            .col-md-10
+              %h4= link_to p.name, project_path(p)
+            .col-md-2.mt-10.text-right
+              = link_to leave_project_path(p), method: :delete, data: { confirm: 'Are you sure you want to leave project?' } do
+                %i.glyphicon.glyphicon-remove.mr-15
   .round-button
     .round-button-circle
       = link_to new_project_path do

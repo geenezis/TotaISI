@@ -33,7 +33,7 @@ class ProjectsController < ApplicationController
     @project_associations = ProjectAssociation.where(project: @project)
     @project_associations.each { |p| p.destroy}
     @project.destroy
-    redirect_to :back
+    redirect_to projects_url
   end
 
   def edit
@@ -48,6 +48,12 @@ class ProjectsController < ApplicationController
     else
       render 'edit'
     end
+  end
+
+  def leave
+    pa = ProjectAssociation.where(user: current_user.id, project: params[:id]).first
+    pa.destroy
+    redirect_to projects_url
   end
 
   private
