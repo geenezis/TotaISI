@@ -14,4 +14,9 @@
             %li
               = link_to 'EDIT PROFILE', edit_user_registration_path, :class => 'navbar-link'
             %li
+              %a{:href => invitations_path}
+                INVITATIONS
+                - unless @invitations.empty?
+                  %span.badge= @invitations.count
+            %li
               = link_to "LOGOUT", destroy_user_session_path, method: :delete, :class => 'navbar-link'

@@ -5,7 +5,9 @@ class ProjectsController < ApplicationController
   end
 
   def show
-  	@project = Project.find(params[:id])
+    @project = Project.find(params[:id])
+    @relation = ProjectAssociation.where(user_id: current_user.id, project_id: @project.id).first
+  	
     @to_do = @project.tasks.where(status: "To Do")
     @in_progress = @project.tasks.where(status: "In Progress")
     @done = @project.tasks.where(status: "Done")

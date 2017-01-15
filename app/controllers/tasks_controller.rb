@@ -15,9 +15,19 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
   end
 
   def update
+    @project = Project.find(params[:project_id])
+    @task = Task.find(params[:id])
+   
+    if @task.update(task_params)
+      redirect_to @project
+    else
+      render 'edit'
+    end
   end
 
   def destroy

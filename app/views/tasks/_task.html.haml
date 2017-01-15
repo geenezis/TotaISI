@@ -8,15 +8,15 @@
       - elsif t.priority == "Low"
         .priority-green
     .col-md-8
-      = t.title
+      = link_to t.title, project_task_path(t.project, t)
     .col-md-1
       - if t.estimation.nil?
         %span.badge.task-estimation 0
       - else
         %span.badge.task-estimation= t.estimation
     .col-md-1
-      = link_to "#" do
+      = link_to edit_project_task_path(t.project, t) do
         %i.glyphicon.glyphicon-cog.mr-15
     .col-md-1
-      = link_to project_task_path(t.project, t), method: :delete, data: { confirm: 'Are you sure?' }do
+      = link_to project_task_path(t.project, t), method: :delete, data: { confirm: 'Are you sure you want to delete task?' }do
         %i.glyphicon.glyphicon-remove.mr-15

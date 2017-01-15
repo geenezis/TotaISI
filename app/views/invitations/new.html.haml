@@ -1,0 +1,11 @@
+.container-fluid.content-container.bg-grey
+  .form-container
+    .form-title
+      %h1= "Invite user to  #{@project.name}"
+    = simple_form_for [@project, @invitation] do |i|
+      .form-inputs
+        = i.input :user, as: :fake, required: true, autofocus: true
+      .form-actions
+        = i.button :submit, "Invite", class: "btn-primary btn-lg btn-form"
+
+        

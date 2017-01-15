@@ -1,6 +1,17 @@
 .container-fluid.content-container.bg-grey
-  .project-title.text-center
-    %h1= @project.name
+  .project-header
+    .row
+      .col-md-6
+        .project-title
+          %h1= @project.name
+      .col-md-6.text-right
+        .project-actions
+          .btn-group.btn-group-lg{"aria-label" => "...", :role => "group"}
+            %a.btn.btn-default{:href => new_project_task_path(@project)} Add task
+            - if @relation.association_type_vo == "manager"
+              %a.btn.btn-default{:href => new_project_invitation_path(@project)} Add contributor
+              %a.btn.btn-default{:href => edit_project_path(@project)} Edit
+              %a.btn.btn-danger{:href => project_path(@project), method: :delete, data: { confirm: 'Are you sure you want to delete project?' }} Delete
   .project-content
     .row
       .col-md-4
@@ -11,7 +22,6 @@
             %ul.list-group
               = render :partial => "tasks/task", :collection => @to_do, :as => :t
           .panel-footer
-            = link_to "Add task", new_project_task_path(@project)
       .col-md-4
         .panel.panel-default.text-center
           .panel-heading
@@ -20,7 +30,6 @@
             %ul.list-group
               = render :partial => "tasks/task", :collection => @in_progress, :as => :t
           .panel-footer
-            = link_to "Add task", new_project_task_path(@project)
       .col-md-4
         .panel.panel-default.text-center
           .panel-heading
@@ -29,4 +38,3 @@
             %ul.list-group
               = render :partial => "tasks/task", :collection => @done, :as => :t
           .panel-footer
-            = link_to "Add task", new_project_task_path(@project)
