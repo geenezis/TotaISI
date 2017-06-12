@@ -6,3 +6,4 @@ class ApplicationController < ActionController::Base
     home_index_path
   end
 end
+
